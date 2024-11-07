@@ -9,7 +9,7 @@ export const formatCurrency = (amount: number) => {
 
 export const formatDateToLocal = (
   dateStr: string,
-  locale: string = 'en-US',
+  locale: string = 'en-US'
 ) => {
   const date = new Date(dateStr);
   const options: Intl.DateTimeFormatOptions = {
@@ -36,27 +36,22 @@ export const generateYAxis = (revenue: Revenue[]) => {
 };
 
 export const generatePagination = (currentPage: number, totalPages: number) => {
-  // If the total number of pages is 7 or less,
-  // display all pages without any ellipsis.
+  // 총페이지 7이하면 ... 없이 모든 번호 보여짐
   if (totalPages <= 7) {
     return Array.from({ length: totalPages }, (_, i) => i + 1);
   }
 
-  // If the current page is among the first 3 pages,
-  // show the first 3, an ellipsis, and the last 2 pages.
+  // 현재페이지가 3이하(앞쪽인 경우)
   if (currentPage <= 3) {
     return [1, 2, 3, '...', totalPages - 1, totalPages];
   }
 
-  // If the current page is among the last 3 pages,
-  // show the first 2, an ellipsis, and the last 3 pages.
+  // 현재페이지가 뒤쪽이면
   if (currentPage >= totalPages - 2) {
     return [1, 2, '...', totalPages - 2, totalPages - 1, totalPages];
   }
 
-  // If the current page is somewhere in the middle,
-  // show the first page, an ellipsis, the current page and its neighbors,
-  // another ellipsis, and the last page.
+  // 현재페이지가 4페이지이상인 경우
   return [
     1,
     '...',

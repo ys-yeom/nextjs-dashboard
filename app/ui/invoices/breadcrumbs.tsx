@@ -2,11 +2,11 @@ import { clsx } from 'clsx';
 import Link from 'next/link';
 import { lusitana } from '@/app/ui/fonts';
 
-interface Breadcrumb {
+type Breadcrumb = {
   label: string;
   href: string;
   active?: boolean;
-}
+};
 
 export default function Breadcrumbs({
   breadcrumbs,
@@ -21,7 +21,7 @@ export default function Breadcrumbs({
             key={breadcrumb.href}
             aria-current={breadcrumb.active}
             className={clsx(
-              breadcrumb.active ? 'text-gray-900' : 'text-gray-500',
+              breadcrumb.active ? 'text-gray-900' : 'text-gray-500'
             )}
           >
             <Link href={breadcrumb.href}>{breadcrumb.label}</Link>

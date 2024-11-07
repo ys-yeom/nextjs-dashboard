@@ -5,7 +5,9 @@ import Table from '@/app/ui/invoices/table';
 import Pagination from '@/app/ui/invoices/pagination';
 import { InvoicesTableSkeleton } from '@/app/ui/skeletons';
 import { Suspense } from 'react';
+import { fetchInvoicesPages } from '@/app/lib/data';
 
+// async 함수이므로 searchParams의 타입을 프라미스로 잡아주고 제네릭으로 타입 전달
 export default async function InvoicesPage({
   searchParams,
 }: {
@@ -14,6 +16,9 @@ export default async function InvoicesPage({
   const params = await searchParams;
   const query = params?.query || '';
   const currentPage = Number(params?.page) || 1;
+
+  // 검색된 데이터 갯수기준 페이지수
+  const totalPages = await fetchInvoicesPages(query);
 
   return (
     <div>
@@ -26,7 +31,7 @@ export default async function InvoicesPage({
         <Table query={query} currentPage={currentPage} />
       </Suspense>
       <div className="mt-5 flex w-full justify-center">
-        {/* <Pagination totalPages={totalPages} /> */}
+        <Pagination totalPages={totalPages} />
       </div>
     </div>
   );
