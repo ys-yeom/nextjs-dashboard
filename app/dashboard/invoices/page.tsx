@@ -6,6 +6,11 @@ import Pagination from '@/app/ui/invoices/pagination';
 import { InvoicesTableSkeleton } from '@/app/ui/skeletons';
 import { Suspense } from 'react';
 import { fetchInvoicesPages } from '@/app/lib/data';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Invoices',
+};
 
 // async 함수이므로 searchParams의 타입을 프라미스로 잡아주고 제네릭으로 타입 전달
 export default async function InvoicesPage({

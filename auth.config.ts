@@ -4,7 +4,8 @@ import type { NextAuthConfig } from 'next-auth';
 // 인증설정객체
 export const authConfig = {
   pages: {
-    // 로그아웃시 사용자가 리디렉션될 경로, /면 홈페이지로 이동
+    // 로그인 필요한 페이지로 접근시 리디렉션될 경로, 로그인페이지가 있는 위치로 지정
+    // signOut 미지정시 로그아웃시 login으로 이동됨
     signIn: '/login',
   },
   callbacks: {
